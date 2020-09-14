@@ -288,6 +288,7 @@ public class Maze {
             for (int y = 1; y <= n; y++)
                 visited[x][y] = false;
         done = false;
+
         solve(1, 1);
     }
 
