@@ -3,10 +3,25 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-
+/**
+ * Driver.java
+ * A class to read and solve a maze, using MazeReader and MazeSolver
+ * Jasen LaBolle
+ * Illinois State University
+ * IT 340 - Sept. 15 2020
+ *
+ * @authors Jasen LaBolle
+ * @version 1.0
+ * @since 2020-09-15
+ */
 public class Driver {
     private static MazeReader m;
 
+    /**
+     * Main method.
+     * Get filename, and pass to MazeReader, then run MazeSolver.
+     * @param args Unused.
+     */
     public static void main(String[] args) {
         String file;
         System.out.print("Welcome to the maze solver. Please enter maze.txt name: ");
@@ -20,13 +35,8 @@ public class Driver {
         }
 
         System.out.println(m.toString());
-        /*
-        Agent[] agents = new Agent[8]; //create an agent for each algo
-
-        for(int i = 0; i < agents.length; i++){ //construct agents
-            agents[i] = new Agent(i, m);
-        }
-        */
+        MazeSolver solver = new MazeSolver(m);
+        System.out.println(solver.toString());
 
     }
 

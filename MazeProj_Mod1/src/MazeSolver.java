@@ -1,17 +1,29 @@
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
-
+/**
+ * MazeSolver.java
+ * A class to solve a maze stored in MazeReader
+ * Jasen LaBolle
+ * Illinois State University
+ * IT 340 - Sept. 15 2020
+ *
+ * @authors Jasen LaBolle
+ * @version 1.0
+ * @since 2020-09-15
+ */
 public class MazeSolver {
+    //instance vars
     private Stack<Space> stack;
     private MazeReader mr;
     private boolean[][] visited;
     private boolean hasFinish;
 
+    /**
+     * Constructor, creates flags for visiting Spaces in MazeReader, and runs solve(MazeReader.getStart())
+     * @param mr The MazeReader object to be solved.
+     */
     public MazeSolver(MazeReader mr) {
         this.mr = mr;
-        System.out.println(mr);
         visited = new boolean[mr.getY()][mr.getX()];
         for (boolean[] booleans : visited) {
             Arrays.fill(booleans, false);
@@ -21,6 +33,10 @@ public class MazeSolver {
         solve(mr.getStart());
     }
 
+    /**
+     * Recursive algorithm for visiting all reachable Spaces in a maze. Sets hasFinish to true if a finish is found.
+     * @param s The space to solve from.
+     */
     private void solve(Space s) {
         if (s.getT() == Type.WALL) {
             visited[s.getI()][s.getJ()] = true;
@@ -61,6 +77,10 @@ public class MazeSolver {
         }
     }
 
+    /**
+     * Overridden method to print out if a finish was found or not.
+     * @return String A statement on whether a solution was found.
+     */
     public String toString() {
 //        StringBuilder sb = new StringBuilder();
 //        for (Space s : stack) {
