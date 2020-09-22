@@ -40,6 +40,7 @@ public class MazeSolver {
         BFS(mr.getStart());
     }
     
+    //Function to solve the maze using BFS algorithm
     public void BFS(Space s) {
         for (boolean[] booleans : visited) { 
             Arrays.fill(booleans, false);
@@ -107,6 +108,7 @@ public class MazeSolver {
     	}
     }
 
+    //Helper function for BFS that accepts 2 spaces and determines if the newSpace can be reached from the old space
     public boolean canReach(Space old, Space newSpace) {
     	if (newSpace.getI() == mr.getNorth(old).getI() && newSpace.getJ() == mr.getNorth(old).getJ()) {
     		return true;
