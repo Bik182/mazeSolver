@@ -1,7 +1,9 @@
+package maze;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
- * MazeReader.java
+ * maze.MazeReader.java
  * A class to read a text file and save a mapping of that text file as a maze.
  * Jasen LaBolle
  * Illinois State University

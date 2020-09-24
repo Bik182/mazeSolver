@@ -1,5 +1,7 @@
+package maze;
+
 /**
- * enum Type
+ * enum maze.Type
  * WALL, HALL, START, FINISH
  * Jasen LaBolle
  * Illinois State University
@@ -13,7 +15,7 @@ enum Type{
     WALL, HALL, START, FINISH;
 }
 /**
- * Space.java
+ * maze.Space.java
  * A class to store the position and type of a location in a Maze.
  * Jasen LaBolle
  * Illinois State University
@@ -31,7 +33,7 @@ public class Space {
      * Constructor
      * @param i The y coordinate
      * @param j The x coordinate
-     * @param t The Type of the space.
+     * @param t The maze.Type of the space.
      */
     Space(int i, int j, Type t){
         this.i = i;
@@ -40,32 +42,32 @@ public class Space {
     }
 
     /**
-     * Gets the Type of the Space
-     * @return Type the Type of the Space
+     * Gets the maze.Type of the maze.Space
+     * @return maze.Type the maze.Type of the maze.Space
      */
     public Type getT(){
         return t;
     }
 
     /**
-     * Sets the Type of the Space.
-     * @param t The Type to set the Space to.
+     * Sets the maze.Type of the maze.Space.
+     * @param t The maze.Type to set the maze.Space to.
      */
     public void setT(Type t){
         this.t = t;
     }
 
     /**
-     * Gets the Y position of the Space
-     * @return int The Y position of the Space
+     * Gets the Y position of the maze.Space
+     * @return int The Y position of the maze.Space
      */
     public int getI() {
         return i;
     }
 
     /**
-     * Gets the X position of the Space
-     * @return int The X position of the Space.
+     * Gets the X position of the maze.Space
+     * @return int The X position of the maze.Space.
      */
     public int getJ() {
         return j;

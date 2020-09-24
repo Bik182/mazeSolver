@@ -6,12 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95b0c4c4-26e3-4964-9bf2-74871e251f17" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/maze/mazeGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/Space.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/Space.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maze2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/maze2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/maze/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/maze/MazeReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/maze/MazeSolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/Space.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/maze/Space.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,17 +79,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Driver" />
@@ -114,7 +103,17 @@
       <workItem from="1600214402779" duration="3696000" />
       <workItem from="1600891448424" duration="1472000" />
       <workItem from="1600908976329" duration="225000" />
+      <workItem from="1600965049614" duration="959000" />
+      <workItem from="1600966025503" duration="1646000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated with BFS">
+      <created>1600965081007</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600965081008</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,7 +131,19 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated with BFS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated with BFS" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="1245" y="246" key="#com.intellij.ide.util.MemberChooser" timestamp="1600966304146">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1245" y="246" key="#com.intellij.ide.util.MemberChooser/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600966304146" />
+    <state x="690" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600965273891">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="690" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600965273891" />
     <state x="787" y="263" key="FileChooserDialogImpl" timestamp="1600046208769">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -177,6 +188,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="487" y="83" key="SettingsEditor/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600046192315" />
+    <state x="552" y="272" key="Vcs.Push.Dialog.v2" timestamp="1600965088639">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="272" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600965088639" />
     <state x="588" y="221" width="838" height="575" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1600046835648">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -201,6 +216,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="616" y="250" key="run.anything.popup/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600137484242" />
+    <state x="-1297" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1600965512935">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1297" y="235" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1080/0.0.1920.1080@-1920.0.1920.1080" timestamp="1600965512935" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

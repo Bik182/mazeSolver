@@ -1,11 +1,11 @@
-import java.io.BufferedReader;
+package maze;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 /**
- * Driver.java
- * A class to read and solve a maze, using MazeReader and MazeSolver
+ * maze.Driver.java
+ * A class to read and solve a maze, using maze.MazeReader and maze.MazeSolver
  * Jasen LaBolle
  * Illinois State University
  * IT 340 - Sept. 23 2020
@@ -19,7 +19,7 @@ public class Driver {
 
     /**
      * Main method.
-     * Get filename, and pass to MazeReader, then run MazeSolver.
+     * Get filename, and pass to maze.MazeReader, then run maze.MazeSolver.
      * @param args Unused.
      */
     public static void main(String[] args) {

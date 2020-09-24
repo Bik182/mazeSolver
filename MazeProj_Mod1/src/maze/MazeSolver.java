@@ -1,13 +1,12 @@
+package maze;
+
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 /**
- * MazeSolver.java
- * A class to solve a maze stored in MazeReader
+ * maze.MazeSolver.java
+ * A class to solve a maze stored in maze.MazeReader
  * Jasen LaBolle
  * Illinois State University
  * IT 340 - Sept. 23 2020
@@ -25,8 +24,8 @@ public class MazeSolver {
     
 
     /**
-     * Constructor, creates flags for visiting Spaces in MazeReader, and runs solve(MazeReader.getStart())
-     * @param mr The MazeReader object to be solved.
+     * Constructor, creates flags for visiting Spaces in maze.MazeReader, and runs solve(maze.MazeReader.getStart())
+     * @param mr The maze.MazeReader object to be solved.
      */
     public MazeSolver(MazeReader mr) {
         this.mr = mr;
@@ -175,7 +174,7 @@ public class MazeSolver {
      */
     public String toString() {
 //        StringBuilder sb = new StringBuilder();
-//        for (Space s : stack) {
+//        for (maze.Space s : stack) {
 //            sb.append(String.format("(%d, %d)", s.getI(), s.getJ()));
 //        }
 //        return sb.toString();
