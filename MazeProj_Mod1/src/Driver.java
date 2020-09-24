@@ -8,11 +8,11 @@ import java.util.Scanner;
  * A class to read and solve a maze, using MazeReader and MazeSolver
  * Jasen LaBolle
  * Illinois State University
- * IT 340 - Sept. 15 2020
+ * IT 340 - Sept. 23 2020
  *
- * @authors Jasen LaBolle
+ * @authors Jasen LaBolle, Nicholas Souligne, Bikal Thapa
  * @version 1.0
- * @since 2020-09-15
+ * @since 2020-09-23
  */
 public class Driver {
     private static MazeReader m;

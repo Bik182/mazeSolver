@@ -3,11 +3,11 @@
  * WALL, HALL, START, FINISH
  * Jasen LaBolle
  * Illinois State University
- * IT 340 - Sept. 15 2020
+ * IT 340 - Sept. 23 2020
  *
- * @authors Jasen LaBolle
+ * @authors Jasen LaBolle, Nicholas Souligne, Bikal Thapa
  * @version 1.0
- * @since 2020-09-15
+ * @since 2020-09-23
  */
 enum Type{
     WALL, HALL, START, FINISH;
@@ -17,11 +17,11 @@ enum Type{
  * A class to store the position and type of a location in a Maze.
  * Jasen LaBolle
  * Illinois State University
- * IT 340 - Sept. 15 2020
+ * IT 340 - Sept. 23 2020
  *
- * @authors Jasen LaBolle
+ * @authors Jasen LaBolle Nicholas Souligne Bikal Thapa
  * @version 1.0
- * @since 2020-09-15
+ * @since 2020-09-23
  */
 public class Space {
     private int i, j;

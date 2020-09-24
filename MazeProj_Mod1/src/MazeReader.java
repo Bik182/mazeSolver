@@ -5,11 +5,11 @@ import java.util.Scanner;
  * A class to read a text file and save a mapping of that text file as a maze.
  * Jasen LaBolle
  * Illinois State University
- * IT 340 - Sept. 15 2020
+ * IT 340 - Sept. 23 2020
  *
- * @authors Jasen LaBolle
+ * @authors Jasen LaBolle, Nicholas Souligne, Bikal Thapa
  * @version 1.0
- * @since 2020-09-15
+ * @since 2020-09-23
  */
 public class MazeReader {
     private ArrayList<ArrayList<Space>> map;

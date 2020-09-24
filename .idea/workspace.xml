@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95b0c4c4-26e3-4964-9bf2-74871e251f17" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/maze1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/maze2.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/MazeSolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeProj_Mod1/src/Space.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeProj_Mod1/src/Space.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maze2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/maze2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,13 +55,13 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jasen\IdeaProjects\mazeSolver\MazeProj_Mod1" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jasen\IdeaProjects\mazeSolver\MazeProj_Mod1\src" />
       <recent name="C:\Users\jasen\IdeaProjects\mazeSolver\src" />
       <recent name="C:\Users\jasen\IdeaProjects\mazeSolver\PrevFiles" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jasen\IdeaProjects\mazeSolver\MazeProj_Mod1" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Driver">
@@ -94,15 +79,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -129,6 +112,8 @@
       <workItem from="1600136234066" duration="2470000" />
       <workItem from="1600138717041" duration="2698000" />
       <workItem from="1600214402779" duration="3696000" />
+      <workItem from="1600891448424" duration="1472000" />
+      <workItem from="1600908976329" duration="225000" />
     </task>
     <servers />
   </component>
@@ -152,22 +137,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="787" y="263" key="FileChooserDialogImpl/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600046208769" />
-    <state width="1877" height="363" key="GridCell.Tab.0.bottom" timestamp="1600141415406">
+    <state width="1877" height="106" key="GridCell.Tab.0.bottom" timestamp="1600887073246">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600141415406" />
-    <state width="1877" height="363" key="GridCell.Tab.0.center" timestamp="1600141415406">
+    <state width="1877" height="106" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600887073246" />
+    <state width="1877" height="106" key="GridCell.Tab.0.center" timestamp="1600887073246">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600141415406" />
-    <state width="1877" height="363" key="GridCell.Tab.0.left" timestamp="1600141415406">
+    <state width="1877" height="106" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600887073246" />
+    <state width="1877" height="106" key="GridCell.Tab.0.left" timestamp="1600887073246">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600141415406" />
-    <state width="1877" height="363" key="GridCell.Tab.0.right" timestamp="1600141415406">
+    <state width="1877" height="106" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600887073246" />
+    <state width="1877" height="106" key="GridCell.Tab.0.right" timestamp="1600887073246">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600141415406" />
+    <state width="1877" height="106" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600887073246" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1600141415407">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -208,10 +193,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="786" y="221" key="git4idea.branch.GitSmartOperationDialog/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600045967164" />
-    <state x="644" y="129" key="new project wizard" timestamp="1600046189054">
+    <state x="644" y="129" key="new project wizard" timestamp="1600897139293">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="644" y="129" key="new project wizard/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600046189054" />
+    <state x="644" y="129" key="new project wizard/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1600897139293" />
     <state x="616" y="250" key="run.anything.popup" timestamp="1600137484242">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
