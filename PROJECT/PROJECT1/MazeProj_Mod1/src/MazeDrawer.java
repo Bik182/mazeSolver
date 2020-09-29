@@ -15,10 +15,10 @@ public class MazeDrawer extends JFrame {
         super("Maze");
         setLayout(new FlowLayout());
 
-//        button1 = new JButton("First button");
-//        add(button1);
-//        theHandler handler = new theHandler();
-//        button1.addActionListener(handler);
+        button1 = new JButton("First button");
+        add(button1);
+        theHandler handler = new theHandler();
+        button1.addActionListener(handler);
 
 
     }
@@ -35,7 +35,7 @@ public class MazeDrawer extends JFrame {
         public void actionPerformed(ActionEvent event){
 
             if(event.getSource() == button1){
-                System.out.println("button1 pressed");
+              //  MazeSolver solver = new MazeSolver(m);
             }
 
         }
