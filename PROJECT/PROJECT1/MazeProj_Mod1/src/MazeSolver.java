@@ -1,5 +1,9 @@
 package PROJECT.PROJECT1.MazeProj_Mod1.src;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * MazeSolver.java
@@ -26,26 +32,38 @@ public class MazeSolver {
     private MazeReader mr;
     private boolean[][] visited;
     private boolean hasFinish;
-    
-
+    public JButton stepButton;
+    private Color gray = Color.LIGHT_GRAY;
+    public JPanel panel;
+    public  JFrame frame;
     /**
      * Constructor, creates flags for visiting Spaces in MazeReader, and runs solve(MazeReader.getStart())
      * @param mr The MazeReader object to be solved.
      */
-    public MazeSolver(MazeReader mr) {
+    public MazeSolver(MazeReader mr, JPanel panel, JFrame frame) throws InterruptedException {
         this.mr = mr;
+        this.panel = panel;
+        this.frame = frame;
+
+
         visited = new boolean[mr.getY()][mr.getX()];
         for (boolean[] booleans : visited) {
             Arrays.fill(booleans, false);
         }
         stack = new Stack<Space>();
         hasFinish = false;
-        solve(mr.getStart());
+
+
+
+        //solve(mr.getStart());
         BFS(mr.getStart());
+        panel.setVisible(true);
+        frame.add(panel);
+        frame.setVisible(true);
     }
     
     //Function to solve the maze using BFS algorithm
-    public void BFS(Space s) {
+    public void BFS(Space s) throws InterruptedException {
         for (boolean[] booleans : visited) { 
             Arrays.fill(booleans, false);
         }
@@ -59,8 +77,10 @@ public class MazeSolver {
     	String path = "";
     	
     	while(!q.isEmpty()) {
+    	    Thread.sleep(500);
     		Space newSpace = q.poll();
     		type = newSpace.getT();
+
     		if(type == Type.FINISH) {    
     			while(!pathing.isEmpty()) {
     				Space current = pathing.poll();
@@ -87,29 +107,40 @@ public class MazeSolver {
     					System.out.println(path);
     				}
     			}
+
     			hasFinish = true;
     		}
     			if(mr.hasNorth(newSpace) && !visited[newSpace.getI()-1][newSpace.getJ()]) {
     				q.add(mr.getNorth(newSpace));
     				pathing.add(mr.getNorth(newSpace));
     				visited[newSpace.getI()-1][newSpace.getJ()] = true;
+                    Painter paint1 = new Painter(s.getJ(),s.getI()-1, gray );
+                    panel.add(paint1);
     			}
     			if(mr.hasEast(newSpace) && !visited[newSpace.getI()][newSpace.getJ()+1]) {
     				q.add(mr.getEast(newSpace));
     				pathing.add(mr.getEast(newSpace));
     				visited[newSpace.getI()][newSpace.getJ()+1] = true;
+                    Painter paint1 = new Painter(s.getJ()+1,s.getI(), gray );
+                    panel.add(paint1);
     			}
     			if(mr.hasWest(newSpace) && !visited[newSpace.getI()][newSpace.getJ()-1]) {
     				q.add(mr.getWest(newSpace));
     				pathing.add(mr.getWest(newSpace));
     				visited[newSpace.getI()][newSpace.getJ()-1] = true;
+                    Painter paint1 = new Painter(s.getJ()-1,s.getI(), gray );
+                    panel.add(paint1);
     			}
     			if(mr.hasSouth(newSpace) && !visited[newSpace.getI()+1][newSpace.getJ()]) {
     				q.add(mr.getSouth(newSpace));
     				pathing.add(mr.getSouth(newSpace));
     				visited[newSpace.getI()+1][newSpace.getJ()] = true;
+
+                    Painter paint1 = new Painter(s.getJ(), s.getI()+1, gray );
+                    panel.add(paint1);
     			}
     	}
+
     }
 
     //Helper function for BFS that accepts 2 spaces and determines if the newSpace can be reached from the old space
@@ -135,26 +166,39 @@ public class MazeSolver {
      * Recursive algorithm for visiting all reachable Spaces in a maze. Sets hasFinish to true if a finish is found.
      * @param s The space to solve from.
      */
-    private void solve(Space s) {
+    private void solve(Space s) throws InterruptedException {
+
+
+
         if (s.getT() == Type.WALL) {
             visited[s.getI()][s.getJ()] = true;
+
         } else if (s.getT() == Type.FINISH) {
             visited[s.getI()][s.getJ()] = true;
             stack.add(s);
             hasFinish = true;
+
+
         } else {
             if (mr.hasNorth(s)) {
                 if (!visited[s.getI() - 1][s.getJ()]) {
                     visited[s.getI()][s.getJ()] = true;
+                    //Painter paint1 = new Painter(s.getI(),s.getJ(), gray );
+                    Painter paint1 = new Painter(s.getJ(),s.getI(), gray );
+                    panel.add(paint1);
 
                     stack.add(s);
+
                     solve(mr.getNorth(s));
                 }
             }
             if (mr.hasSouth(s)) {
                 if (!visited[s.getI() + 1][s.getJ()]) {
                     visited[s.getI()][s.getJ()] = true;
+                    Painter paint3 = new Painter(s.getJ(),s.getI(), gray );
+                    panel.add(paint3);
                     stack.add(s);
+
                     solve(mr.getSouth(s));
                 }
             }
@@ -162,14 +206,20 @@ public class MazeSolver {
             if (mr.hasEast(s)) {
                 if (!visited[s.getI()][s.getJ() + 1]) {
                     visited[s.getI()][s.getJ()] = true;
+                    Painter paint3 = new Painter(s.getJ(),s.getI(), gray );
+                    panel.add(paint3);
                     stack.add(s);
+
                     solve(mr.getEast(s));
                 }
             }
             if (mr.hasWest(s)) {
                 if (!visited[s.getI()][s.getJ() - 1]) {
                     visited[s.getI()][s.getJ()] = true;
+                    Painter paint4 = new Painter(s.getJ(),s.getI(), gray );
+                    panel.add(paint4);
                     stack.add(s);
+
                     solve(mr.getWest(s));
                 }
             }

@@ -1,5 +1,7 @@
 package PROJECT.PROJECT1.MazeProj_Mod1.src;
 
+import java.awt.*;
+
 /**
  * enum Type
  * WALL, HALL, START, FINISH
@@ -40,6 +42,8 @@ public class Space {
         this.j = j;
         this.t = t;
     }
+
+
 
     /**
      * Gets the Type of the Space

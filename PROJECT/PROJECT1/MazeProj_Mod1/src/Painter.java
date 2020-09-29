@@ -16,9 +16,9 @@ public class Painter extends JPanel {
     public void paintComponent(Graphics g){
 
         super.paintComponent(g);
-        this.setLocation(x * 50, y * 50);
+        this.setLocation(x * 25, y * 25);
         this.setBackground(this.col);
-        this.setSize(50 ,50);
+        this.setSize(25 ,25);
 
 
 

@@ -35,7 +35,7 @@ public class MazeDrawer extends JFrame {
         public void actionPerformed(ActionEvent event){
 
             if(event.getSource() == button1){
-              //  MazeSolver solver = new MazeSolver(m);
+              //MazeSolver solver = new MazeSolver(m);
             }
 
         }

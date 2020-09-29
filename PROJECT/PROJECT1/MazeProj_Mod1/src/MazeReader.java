@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.Flow;
+
 /**
  * MazeReader.java
  * A class to read a text file and save a mapping of that text file as a maze.
@@ -17,25 +19,23 @@ import java.util.Scanner;
  */
 
 
-public class MazeReader {
+public class MazeReader  {
     private ArrayList<ArrayList<Space>> map;
     private Space start;
 
 
 
-    public MazeReader(Scanner mapFile) {
+    public MazeReader(Scanner mapFile, JFrame frame, JPanel panel2 ) {
         String line;
         map = new ArrayList<>();
         int i = 0;
         int w = 0;
-        MazeDrawer mazeDrawer = new MazeDrawer();
-        mazeDrawer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        mazeDrawer.setVisible(true);
         Color black = Color.BLACK;
         Color blue = Color.BLUE;
         Color red = Color.RED;
         Color white = Color.WHITE;
+
         while (mapFile.hasNextLine()) {
             line = mapFile.nextLine();
             w = line.length();
@@ -45,19 +45,29 @@ public class MazeReader {
 
                      switch (line.charAt(j)){
                          case '#':
-
-                             mazeDrawer.addRectangle(j  , i,black);
+                             //walls
+//                             Painter paint = new Painter(j,i, black );
+//
+//                            // panel(j  , i,black);
+//                             panel2.add(paint);
 
                              break;
                          case '.':
+                             //remove comments here for white color, but since background is already,
+                             //wont matter
+                             //Painter paint1 = new Painter(j,i, white );
 
-                             mazeDrawer.addRectangle(j, i ,blue);
+                             //panel2.add(paint1);
                              break;
                          case'o':
-                             mazeDrawer.addRectangle(j, i ,red);
+//                             Painter paint2 = new Painter(j,i, red );
+//                            // panel.addRectangle(j, i ,red);
+//                             panel2.add(paint2);
                              break;
                          case'*':
-                             mazeDrawer.addRectangle(j, i ,white);
+//                             Painter paint3 = new Painter(j,i, blue );
+//                             panel2.add(paint3);
+//                            // panel.addRectangle(j, i ,white);
                              break;
                          default: ;
                      }
@@ -73,7 +83,11 @@ public class MazeReader {
 
             i++;
         }
-        mazeDrawer.setSize(  w* 50,   i * 50);
+        //panel.add(panel2);
+
+        frame.add(panel2, BorderLayout.CENTER);
+
+        frame.setVisible(true);
         System.out.print( "\n"+i +" length\n");
         System.out.print(w+" width \n");
 
