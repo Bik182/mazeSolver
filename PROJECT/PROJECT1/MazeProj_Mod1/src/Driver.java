@@ -121,7 +121,7 @@ public class Driver {
                     e.printStackTrace();
                 }
 
-                System.out.println(solver.toString());
+                //System.out.println(solver.toString());
             }
 
             if(event.getSource() == loadButton){

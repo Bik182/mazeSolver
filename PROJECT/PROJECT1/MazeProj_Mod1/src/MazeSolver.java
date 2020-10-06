@@ -64,7 +64,7 @@ public class MazeSolver {
             Arrays.fill(booleans, false);
         }
         stack = new Stack<Space>();
-        hasFinish = false;
+
 
 
         stepButton = new JButton("Step button");
@@ -137,14 +137,18 @@ public class MazeSolver {
                                 finish = curr;
                             }
                         }
-                        solution.setText("Solution finish @ (" + finish.getI() + "," + finish.getJ() + ") in " + numOfMoves + " moves.");
+                        solution.setText("Solution finish @ " + path.substring(0,path.indexOf(")")) + ") in " + numOfMoves + " moves.");
                         solution.setVisible(true);
+                        animationButton.setVisible(false);
+                        stepButton.setVisible(false);
                         status.setVisible(false);
                         System.out.println(path);
+                        t.stop();
+                        return;
                     }
                 }
 
-                hasFinish = true;
+
             }
             if (mr.hasNorth(newSpace) && !visited[newSpace.getI() - 1][newSpace.getJ()]) {
                 q.add(mr.getNorth(newSpace));
@@ -182,14 +186,20 @@ public class MazeSolver {
             numOfMoves++;
             if(q.isEmpty()){
 
+                solution.setText("No solution found.");
+                solution.setVisible(true);
+                stepButton.setVisible(false);
+                animationButton.setVisible(false);
+                status.setVisible(false);
                 t.stop();
+                return;
             }
 
 
         };
 
         //create time with timerAction above
-        t = new Timer(1000,timerAction);
+        t = new Timer(250,timerAction);
 
         //actionListener for both buttons, step and animation
 
@@ -197,8 +207,6 @@ public class MazeSolver {
             @Override
             public void actionPerformed(ActionEvent event){
                 if(event.getSource() == stepButton){
-
-
                     Space newSpace = q.poll();
                     type = newSpace.getT();
 
@@ -225,10 +233,14 @@ public class MazeSolver {
                                         finish = curr;
                                     }
                                 }
-                                solution.setText("Solution finish @ " + path.substring(0, path.indexOf(')') +1) + " in " + numOfMoves + " moves.");
+                                solution.setText("Solution finish @ " + path.substring(0,path.indexOf(")")) + ") in " + numOfMoves + " moves.");
                                 solution.setVisible(true);
+                                animationButton.setVisible(false);
+                                stepButton.setVisible(false);
                                 status.setVisible(false);
                                 System.out.println(path);
+                                t.stop();
+                                return;
                             }
                         }
 
@@ -262,6 +274,16 @@ public class MazeSolver {
 
                         Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
                         panel.add(paint1);
+                    }
+                    if(q.isEmpty()){
+
+                        solution.setText("No solution found.");
+                        solution.setVisible(true);
+                        stepButton.setVisible(false);
+                        animationButton.setVisible(false);
+                        status.setVisible(false);
+                        t.stop();
+                        return;
                     }
                     numOfMoves++;
                         panel.repaint();
@@ -394,17 +416,17 @@ public class MazeSolver {
      * Overridden method to print out if a finish was found or not.
      * @return String A statement on whether a solution was found.
      */
-    public String toString() {
-//        StringBuilder sb = new StringBuilder();
-//        for (Space s : stack) {
-//            sb.append(String.format("(%d, %d)", s.getI(), s.getJ()));
+//    public String toString() {
+////        StringBuilder sb = new StringBuilder();
+////        for (Space s : stack) {
+////            sb.append(String.format("(%d, %d)", s.getI(), s.getJ()));
+////        }
+////        return sb.toString();
+//        if(hasFinish){
+//            return "Finish Found";
 //        }
-//        return sb.toString();
-        if(hasFinish){
-            return "Finish Found";
-        }
-        else return "There is no finish.";
-    }
+//        else return "There is no finish.";
+//    }
 
 
 
