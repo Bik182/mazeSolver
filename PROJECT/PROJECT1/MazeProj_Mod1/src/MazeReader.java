@@ -46,10 +46,10 @@ public class MazeReader  {
                      switch (line.charAt(j)){
                          case '#':
                              //walls
-//                             Painter paint = new Painter(j,i, black );
-//
-//                            // panel(j  , i,black);
-//                             panel2.add(paint);
+                             Painter paint = new Painter(j,i, black );
+
+                            // panel(j  , i,black);
+                             panel2.add(paint);
 
                              break;
                          case '.':
@@ -60,14 +60,14 @@ public class MazeReader  {
                              //panel2.add(paint1);
                              break;
                          case'o':
-//                             Painter paint2 = new Painter(j,i, red );
-//                            // panel.addRectangle(j, i ,red);
-//                             panel2.add(paint2);
+                             Painter paint2 = new Painter(j,i, red );
+                            // panel.addRectangle(j, i ,red);
+                             panel2.add(paint2);
                              break;
                          case'*':
-//                             Painter paint3 = new Painter(j,i, blue );
-//                             panel2.add(paint3);
-//                            // panel.addRectangle(j, i ,white);
+                             Painter paint3 = new Painter(j,i, blue );
+                             panel2.add(paint3);
+                            // panel.addRectangle(j, i ,white);
                              break;
                          default: ;
                      }

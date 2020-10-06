@@ -22,8 +22,9 @@ import java.util.Scanner;
  */
 public class Driver {
     private static MazeReader m;
-    private JButton startButton, loadButton;
-    private JTextField textField;
+    private JButton startButton, loadButton, reset;
+    public JTextField textField;
+    public JLabel status, solution;
     public JFrame frame1;
     public JPanel panel1, panel2, panel3;
 
@@ -49,22 +50,41 @@ public class Driver {
         startButton = new JButton("Start");
         startButton.setSize(100,50);
         startButton.setLocation(0,0);
+        startButton.setVisible(false);
 
         loadButton = new JButton("Load");
         loadButton.setSize(100,50);
         loadButton.setLocation(150,0);
 
+        reset = new JButton("Reset");
+        reset.setSize(100,50);
+        reset.setLocation(1000,500);
+
         theHandler handler = new theHandler();
         loadButton.addActionListener(handler);
         startButton.addActionListener(handler);
-
+        reset.addActionListener(handler);
         textField = new JTextField("maze-2.txt");
         textField.setSize(100,50);
         textField.setLocation(350,0);
 
+        status = new JLabel("No Maze...");
+        status.setSize(100,50);
+        status.setLocation(100,500);
+
+        solution = new JLabel("solution...");
+        solution.setSize(100,50);
+        solution.setLocation(3000,500);
+        solution.setVisible(false);
+
+        panel1.add(status);
+        panel1.add(solution);
+
         panel1.add(startButton);
         panel1.add(loadButton);
+        panel1.add(reset);
         panel1.add(textField);
+
 
         panel2 = new JPanel();
         panel2.setLayout(new FlowLayout());
@@ -95,10 +115,12 @@ public class Driver {
 
                 MazeSolver solver = null;
                 try {
-                    solver = new MazeSolver(m, panel2, frame1);
+                    solver = new MazeSolver(m, panel2,panel1, frame1, status,solution, reset);
+                    startButton.setVisible(false);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
                 System.out.println(solver.toString());
             }
 
@@ -112,7 +134,17 @@ public class Driver {
                     System.out.println("File not found. Program will exit.");
                     System.exit(1);
                 }
+                status.setText("Maze Loaded");
+                loadButton.setVisible(false);
+                startButton.setVisible(true);
+                textField.setVisible(false);
                 System.out.println("file");
+
+            }
+            if(event.getSource() == reset){
+                frame1.setVisible(false);
+                frame1.dispose();
+                new Driver();
 
             }
 

@@ -1,16 +1,17 @@
 package PROJECT.PROJECT1.MazeProj_Mod1.src;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import java.util.*;
 import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -32,20 +33,32 @@ public class MazeSolver {
     private MazeReader mr;
     private boolean[][] visited;
     private boolean hasFinish;
-    public JButton stepButton;
+    public JButton stepButton, animationButton, reset;
+    public int numOfMoves = 0;
+    public  JLabel status, solution;
     private Color gray = Color.LIGHT_GRAY;
-    public JPanel panel;
+    private long begTime, endTime, finalTime;
+    public JPanel panel, mainPanel;
     public  JFrame frame;
+    private  Type type;
+    private String path = "";
+
+    private  Timer t;
+    private Queue<Space> q = new ArrayDeque<>();
+    private Queue<Space> pathing = new ArrayDeque<>();
+    private Queue<Space> holder = new ArrayDeque<>();
     /**
      * Constructor, creates flags for visiting Spaces in MazeReader, and runs solve(MazeReader.getStart())
      * @param mr The MazeReader object to be solved.
      */
-    public MazeSolver(MazeReader mr, JPanel panel, JFrame frame) throws InterruptedException {
+    public MazeSolver(MazeReader mr, JPanel panel,JPanel panel1, JFrame frame, JLabel status, JLabel solution, JButton reset) throws InterruptedException {
         this.mr = mr;
         this.panel = panel;
         this.frame = frame;
-
-
+        this.mainPanel = panel1;
+        this.status = status;
+        this.solution = solution;
+        this.reset = reset;
         visited = new boolean[mr.getY()][mr.getX()];
         for (boolean[] booleans : visited) {
             Arrays.fill(booleans, false);
@@ -54,94 +67,247 @@ public class MazeSolver {
         hasFinish = false;
 
 
+        stepButton = new JButton("Step button");
+        stepButton.setSize(100,50);
+        stepButton.setLocation(1000,500);
 
-        //solve(mr.getStart());
+
+
+        animationButton = new JButton("Animation button");
+        animationButton.setSize(100,50);
+        animationButton.setLocation(1000,1000);
+
+
+        begTime = System.currentTimeMillis();
+
+
         BFS(mr.getStart());
+
         panel.setVisible(true);
         frame.add(panel);
         frame.setVisible(true);
+
     }
-    
+
+
+
     //Function to solve the maze using BFS algorithm
-    public void BFS(Space s) throws InterruptedException {
+    public void BFS(Space s)  {
+
+        //we are starting
+        status.setText("Solution is progress...");
+
         for (boolean[] booleans : visited) { 
             Arrays.fill(booleans, false);
         }
-    	Queue<Space> q = new ArrayDeque<>();
-    	Queue<Space> pathing = new ArrayDeque<>();
-    	Queue<Space> holder = new ArrayDeque<>();
+
     	visited[s.getI()][s.getJ()] = true;
     	q.add(new Space(s.getI(), s.getJ(), Type.START));
     	pathing.add(new Space(s.getI(), s.getJ(), Type.START));
-    	Type type;
-    	String path = "";
-    	
-    	while(!q.isEmpty()) {
-    	    Thread.sleep(500);
-    		Space newSpace = q.poll();
-    		type = newSpace.getT();
 
-    		if(type == Type.FINISH) {    
-    			while(!pathing.isEmpty()) {
-    				Space current = pathing.poll();
-    				holder.add(current);
-    				if(pathing.isEmpty()) {
-    					//Code to reverse the queue in between comment blocks
-    					Stack<Space> s2 = new Stack<Space>();
-    					while(!holder.isEmpty()) {
-    						s2.push(holder.poll());
-    					}
-    					while(!s2.isEmpty()) {
-    						holder.add(s2.pop());
-    					}
-    					//end code for reversing queue
-    					Space finish = current;
-    					while(!holder.isEmpty()) {
-    						Space curr = holder.poll();
-    						if(canReach(finish, curr)) {
-    							path += "(" + finish.getI() + "," + finish.getJ() + ")";
-    							finish = curr;
-    						}
-    					}
-    			    	
-    					System.out.println(path);
-    				}
-    			}
+        ActionListener timerAction;
 
-    			hasFinish = true;
-    		}
-    			if(mr.hasNorth(newSpace) && !visited[newSpace.getI()-1][newSpace.getJ()]) {
-    				q.add(mr.getNorth(newSpace));
-    				pathing.add(mr.getNorth(newSpace));
-    				visited[newSpace.getI()-1][newSpace.getJ()] = true;
-                    Painter paint1 = new Painter(s.getJ(),s.getI()-1, gray );
-                    panel.add(paint1);
-    			}
-    			if(mr.hasEast(newSpace) && !visited[newSpace.getI()][newSpace.getJ()+1]) {
-    				q.add(mr.getEast(newSpace));
-    				pathing.add(mr.getEast(newSpace));
-    				visited[newSpace.getI()][newSpace.getJ()+1] = true;
-                    Painter paint1 = new Painter(s.getJ()+1,s.getI(), gray );
-                    panel.add(paint1);
-    			}
-    			if(mr.hasWest(newSpace) && !visited[newSpace.getI()][newSpace.getJ()-1]) {
-    				q.add(mr.getWest(newSpace));
-    				pathing.add(mr.getWest(newSpace));
-    				visited[newSpace.getI()][newSpace.getJ()-1] = true;
-                    Painter paint1 = new Painter(s.getJ()-1,s.getI(), gray );
-                    panel.add(paint1);
-    			}
-    			if(mr.hasSouth(newSpace) && !visited[newSpace.getI()+1][newSpace.getJ()]) {
-    				q.add(mr.getSouth(newSpace));
-    				pathing.add(mr.getSouth(newSpace));
-    				visited[newSpace.getI()+1][newSpace.getJ()] = true;
+        //for animation button, does this every second until q.isEmpty()
+        timerAction = e -> {
 
-                    Painter paint1 = new Painter(s.getJ(), s.getI()+1, gray );
-                    panel.add(paint1);
-    			}
-    	}
+            Space newSpace = q.poll();
+            type = newSpace.getT();
+
+
+            if (type == Type.FINISH) {
+                while (!pathing.isEmpty()) {
+                    Space current = pathing.poll();
+                    holder.add(current);
+                    if (pathing.isEmpty()) {
+                        //Code to reverse the queue in between comment blocks
+                        Stack<Space> s2 = new Stack<Space>();
+                        while (!holder.isEmpty()) {
+                            s2.push(holder.poll());
+                        }
+                        while (!s2.isEmpty()) {
+                            holder.add(s2.pop());
+                        }
+                        //end code for reversing queue
+                        Space finish = current;
+                        while (!holder.isEmpty()) {
+                            Space curr = holder.poll();
+                            if (canReach(finish, curr)) {
+                                path += "(" + finish.getI() + "," + finish.getJ() + ")";
+
+                                finish = curr;
+                            }
+                        }
+                        solution.setText("Solution finish @ (" + finish.getI() + "," + finish.getJ() + ") in " + numOfMoves + " moves.");
+                        solution.setVisible(true);
+                        status.setVisible(false);
+                        System.out.println(path);
+                    }
+                }
+
+                hasFinish = true;
+            }
+            if (mr.hasNorth(newSpace) && !visited[newSpace.getI() - 1][newSpace.getJ()]) {
+                q.add(mr.getNorth(newSpace));
+                pathing.add(mr.getNorth(newSpace));
+                visited[newSpace.getI()][newSpace.getJ()] = true;
+                Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
+                panel.add(paint1);
+            }
+            if (mr.hasEast(newSpace) && !visited[newSpace.getI()][newSpace.getJ() + 1]) {
+                q.add(mr.getEast(newSpace));
+                pathing.add(mr.getEast(newSpace));
+                visited[newSpace.getI()][newSpace.getJ()] = true;
+                Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
+                panel.add(paint1);
+            }
+            if (mr.hasWest(newSpace) && !visited[newSpace.getI()][newSpace.getJ() - 1]) {
+                q.add(mr.getWest(newSpace));
+                pathing.add(mr.getWest(newSpace));
+                visited[newSpace.getI()][newSpace.getJ()] = true;
+                Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
+                panel.add(paint1);
+            }
+            if (mr.hasSouth(newSpace) && !visited[newSpace.getI() + 1][newSpace.getJ()]) {
+                q.add(mr.getSouth(newSpace));
+                pathing.add(mr.getSouth(newSpace));
+                visited[newSpace.getI()][newSpace.getJ()] = true;
+
+                Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
+                panel.add(paint1);
+            }
+            panel.repaint();
+            panel.setVisible(true);
+            frame.repaint();
+            frame.setVisible(true);
+            numOfMoves++;
+            if(q.isEmpty()){
+
+                t.stop();
+            }
+
+
+        };
+
+        //create time with timerAction above
+        t = new Timer(1000,timerAction);
+
+        //actionListener for both buttons, step and animation
+
+        ActionListener actionLis = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event){
+                if(event.getSource() == stepButton){
+
+
+                    Space newSpace = q.poll();
+                    type = newSpace.getT();
+
+                    if (type == Type.FINISH) {
+                        while (!pathing.isEmpty()) {
+                            Space current = pathing.poll();
+                            holder.add(current);
+                            if (pathing.isEmpty()) {
+                                //Code to reverse the queue in between comment blocks
+                                Stack<Space> s2 = new Stack<Space>();
+                                while (!holder.isEmpty()) {
+                                    s2.push(holder.poll());
+                                }
+                                while (!s2.isEmpty()) {
+                                    holder.add(s2.pop());
+                                }
+                                //end code for reversing queue
+                                Space finish = current;
+                                while (!holder.isEmpty()) {
+                                    Space curr = holder.poll();
+                                    if (canReach(finish, curr)) {
+                                        path += "(" + finish.getI() + "," + finish.getJ() + ")";
+
+                                        finish = curr;
+                                    }
+                                }
+                                solution.setText("Solution finish @ " + path.substring(0, path.indexOf(')') +1) + " in " + numOfMoves + " moves.");
+                                solution.setVisible(true);
+                                status.setVisible(false);
+                                System.out.println(path);
+                            }
+                        }
+
+                        hasFinish = true;
+                    }
+                    if (mr.hasNorth(newSpace) && !visited[newSpace.getI() - 1][newSpace.getJ()]) {
+                        q.add(mr.getNorth(newSpace));
+                        pathing.add(mr.getNorth(newSpace));
+                        visited[newSpace.getI()][newSpace.getJ()] = true;
+                        Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
+                        panel.add(paint1);
+                    }
+                    if (mr.hasEast(newSpace) && !visited[newSpace.getI()][newSpace.getJ() + 1]) {
+                        q.add(mr.getEast(newSpace));
+                        pathing.add(mr.getEast(newSpace));
+                        visited[newSpace.getI()][newSpace.getJ()] = true;
+                        Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
+                        panel.add(paint1);
+                    }
+                    if (mr.hasWest(newSpace) && !visited[newSpace.getI()][newSpace.getJ() - 1]) {
+                        q.add(mr.getWest(newSpace));
+                        pathing.add(mr.getWest(newSpace));
+                        visited[newSpace.getI()][newSpace.getJ()] = true;
+                        Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
+                        panel.add(paint1);
+                    }
+                    if (mr.hasSouth(newSpace) && !visited[newSpace.getI() + 1][newSpace.getJ()]) {
+                        q.add(mr.getSouth(newSpace));
+                        pathing.add(mr.getSouth(newSpace));
+                        visited[newSpace.getI()][newSpace.getJ()] = true;
+
+                        Painter paint1 = new Painter(newSpace.getJ(), newSpace.getI(), gray);
+                        panel.add(paint1);
+                    }
+                    numOfMoves++;
+                        panel.repaint();
+                        panel.setVisible(true);
+                        frame.repaint();
+                        frame.setVisible(true);
+
+                }
+
+                if(event.getSource() == animationButton){
+                    if(t.isRunning()){
+
+                        t.stop();
+                        stepButton.setEnabled(true);
+                        stepButton.setText("Step Button");
+                        animationButton.setText("Start Animation");
+                    }else{
+                        stepButton.setEnabled(false);
+                        stepButton.setText("Step Button (disabled)");
+                        t.start();
+                        animationButton.setText("Stop Animation");
+                    }
+
+                }
+                if(event.getSource() == reset){
+
+                    t.stop();
+                    frame.setVisible(false); //you can't see me!
+                    frame.dispose(); //Destroy the JFrame object
+                }
+            }
+            };
+
+
+        stepButton.addActionListener(actionLis);
+        animationButton.addActionListener(actionLis);
+
+        mainPanel.add(stepButton);
+        mainPanel.add(animationButton);
+
+
 
     }
+
+
+
 
     //Helper function for BFS that accepts 2 spaces and determines if the newSpace can be reached from the old space
     public boolean canReach(Space old, Space newSpace) {
@@ -167,8 +333,6 @@ public class MazeSolver {
      * @param s The space to solve from.
      */
     private void solve(Space s) throws InterruptedException {
-
-
 
         if (s.getT() == Type.WALL) {
             visited[s.getI()][s.getJ()] = true;
@@ -241,5 +405,8 @@ public class MazeSolver {
         }
         else return "There is no finish.";
     }
+
+
+
 
 }
